@@ -1,1 +1,152 @@
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#121a2b;background:#f5f7fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,#e4edff 0,transparent 38%),#f5f7fb}.wrap{width:min(100% - 32px,660px);margin:32px auto}.card{background:#fff;border:1px solid #e8edf5;border-radius:28px;box-shadow:0 12px 30px rgba(26,45,88,.07)}.profile{padding:24px;display:grid;grid-template-columns:190px 1fr;gap:26px;align-items:stretch}.logo{border-radius:22px;min-height:265px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#0b2566,#2563eb 65%,#66b2ff);color:white;font-size:72px;font-weight:850;letter-spacing:-6px;box-shadow:inset 0 0 35px #ffffff18}.logo span{color:#9de6ff}.eyebrow{font-size:10px;letter-spacing:2px;font-weight:800;color:#4771cb;margin:3px 0 8px}h1{font-size:clamp(26px,4vw,34px);letter-spacing:-1.4px;line-height:1.1;margin:0 0 7px}.role{font-size:14px;color:#667187;margin:0 0 18px}.social{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}.social a{font-size:12px;font-weight:700;color:#2157d9;text-decoration:none;border:1px solid #dbe6ff;border-radius:30px;padding:7px 10px;background:#f6f9ff}.social a:hover{background:#e8f0ff}.bio{font-size:14px;line-height:1.75;color:#38445a;margin:0}.language{font-size:12px;color:#64748b;margin:15px 0 0}.contact{margin-top:18px;padding:16px 28px}.email{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0 21px;border-bottom:1px solid #e8edf5}.email h2{font-size:21px;letter-spacing:-.6px;margin:0 0 8px}.email p{font-size:14px;color:#64748b;margin:0;overflow-wrap:anywhere}button{cursor:pointer;background:#eef3ff;border:1px solid #d8e4ff;color:#2457df;border-radius:12px;font-size:13px;font-weight:700;padding:10px 13px}button:hover{background:#dce8ff}.contact-link{display:flex;align-items:center;gap:16px;min-height:84px;text-decoration:none;color:#131b2c;border-bottom:1px solid #e8edf5;font-size:18px;font-weight:750;transition:transform .2s,color .2s}.contact-link:last-child{border-bottom:0}.contact-link:hover{color:#2556d9;transform:translateX(3px)}.round{width:49px;height:49px;border-radius:50%;display:grid;place-items:center;background:#2455e8;color:white;font-size:23px;flex:none}.arrow{margin-left:auto;color:#738096;font-size:18px}footer{text-align:center;font-size:12px;color:#8490a4;padding:23px 5px}@media(max-width:570px){.wrap{margin:15px auto;width:min(100% - 22px,660px)}.profile{grid-template-columns:1fr;padding:17px;gap:17px}.logo{min-height:130px;font-size:62px}.intro{padding:3px 4px 7px}.contact{padding:12px 18px}.contact-link{font-size:16px;gap:12px;min-height:78px}.round{width:43px;height:43px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* Sarah Itafa — contact page
+   Same theme as the portfolio: navy surfaces, rose accent, everything in italic.
+   Plus Jakarta Sans for text, Instrument Serif for the logo.
+   Colors and fonts live in :root. Change them there first. */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700;1,800&family=Instrument+Serif:ital@0;1&display=swap");
+
+:root {
+  color-scheme: dark;
+
+  --bg: #070a1a;
+  --surface: #0f1840;
+  --surface-2: #17235a;
+  --line: #1c2954;
+  --line-strong: #2f3f78;
+
+  --text: #eaf0ff;
+  --soft: #c8d1ef;
+  --muted: #93a0cc;
+
+  --accent: #ff7fae;           /* primary: rose */
+  --accent-hi: #ffa3c4;        /* hover / highlight */
+  --accent-lo: #f2649a;        /* deeper end of the gradient */
+  --accent-ink: #2d0615;       /* text that sits on the rose */
+  --accent-rgb: 255, 127, 174; /* same rose as r, g, b: used for glows and soft fills */
+  --accent-soft: rgba(var(--accent-rgb), .12);
+  --accent-line: rgba(var(--accent-rgb), .42);
+
+  --shadow: 0 30px 60px -32px rgba(0, 0, 0, .85);
+
+  --font-body: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --ease: cubic-bezier(.22, .8, .3, 1);
+
+  font-family: var(--font-body);
+  color: var(--soft);
+  font-synthesis: none;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-style: italic;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  background: transparent;
+}
+/* soft glows behind everything */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(640px circle at 92% -6%, rgba(var(--accent-rgb), .15), transparent 62%),
+    radial-gradient(520px circle at 0% 100%, rgba(80, 90, 220, .14), transparent 65%);
+}
+::selection { background: var(--accent); color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 3px; border-radius: 10px; }
+
+.wrap { width: min(100% - 32px, 680px); margin: 32px auto; }
+
+.card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(165deg, var(--surface-2) 0%, var(--surface) 60%);
+  border: 1px solid var(--line-strong); border-radius: 30px;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Profile ---------- */
+.profile { padding: 24px; display: grid; grid-template-columns: 190px 1fr; gap: 28px; align-items: stretch; }
+.logo {
+  position: relative; overflow: hidden;
+  min-height: 265px; display: flex; align-items: center; justify-content: center;
+  border-radius: 24px; border: 1px solid var(--line-strong);
+  background:
+    radial-gradient(circle at 80% 8%, rgba(var(--accent-rgb), .38), transparent 62%),
+    linear-gradient(150deg, #1a2a6e 0%, #0d1540 70%);
+  color: #fff;
+  font-family: var(--font-serif); font-size: 96px; font-weight: 400; font-style: italic; letter-spacing: -.03em; line-height: 1;
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, .05);
+}
+.logo span { color: var(--accent); }
+.intro { align-self: center; }
+.eyebrow { display: flex; align-items: center; gap: 12px; margin: 3px 0 12px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-hi); }
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--accent); }
+h1 { margin: 0 0 8px; font-size: clamp(28px, 4.4vw, 40px); font-weight: 800; font-style: italic; line-height: 1.08; letter-spacing: -.04em; color: #fff; text-wrap: balance; }
+.role { margin: 0 0 20px; font-size: 15px; color: var(--muted); }
+.social { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 20px; }
+.social a {
+  padding: 7px 14px; font-size: 12.5px; font-weight: 700; text-decoration: none;
+  color: var(--accent-hi); background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 999px;
+  transition: background .25s, color .25s, border-color .25s, transform .25s var(--ease);
+}
+.social a:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); transform: translateY(-2px); }
+.bio { margin: 0; font-size: 15px; line-height: 1.8; color: var(--soft); }
+.language { margin: 15px 0 0; font-size: 12.5px; color: var(--muted); }
+
+/* ---------- Contact ---------- */
+.contact { margin-top: 18px; padding: 16px 30px; }
+.email { display: flex; justify-content: space-between; gap: 14px; align-items: center; padding: 12px 0 22px; border-bottom: 1px solid var(--line-strong); }
+.email h2 { margin: 0 0 8px; font-size: 23px; font-weight: 800; font-style: italic; letter-spacing: -.03em; color: var(--text); }
+.email p { margin: 0; font-size: 14.5px; color: var(--muted); overflow-wrap: anywhere; }
+
+button {
+  position: relative; isolation: isolate; overflow: hidden;
+  cursor: pointer; padding: 11px 22px;
+  font-family: var(--font-body); font-style: italic; font-size: 13.5px; font-weight: 700; color: var(--text);
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat left center / 0% 100%;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  transition: background-size .45s var(--ease), color .3s, border-color .3s, transform .25s var(--ease);
+}
+button:hover { background-size: 100% 100%; color: var(--accent-ink); border-color: var(--accent); transform: translateY(-2px); }
+button:active { transform: translateY(1px); }
+
+.contact-link {
+  display: flex; align-items: center; gap: 16px; min-height: 86px;
+  text-decoration: none; color: var(--text); border-bottom: 1px solid var(--line);
+  font-size: 18px; font-weight: 700; letter-spacing: -.01em;
+  transition: transform .3s var(--ease), color .2s;
+}
+.contact-link:last-child { border-bottom: 0; }
+.contact-link:hover { color: #fff; transform: translateX(4px); }
+.round {
+  flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%;
+  font-size: 22px; font-style: normal; color: var(--accent-ink);
+  background: linear-gradient(135deg, var(--accent-hi) 0%, var(--accent) 55%, var(--accent-lo) 100%);
+  box-shadow: 0 10px 24px -12px rgba(var(--accent-rgb), .8), inset 0 1px 0 rgba(255, 255, 255, .45);
+  transition: transform .35s var(--ease);
+}
+.contact-link:hover .round { transform: scale(1.08) rotate(-6deg); }
+.arrow { margin-left: auto; display: grid; place-items: center; flex: none; width: 36px; height: 36px; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--accent-hi); font-size: 16px; font-style: normal; transition: background .25s, color .25s, border-color .25s, transform .35s var(--ease); }
+.contact-link:hover .arrow { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); transform: rotate(45deg); }
+
+footer { padding: 26px 5px; text-align: center; font-size: 13px; color: var(--muted); }
+footer a { color: var(--accent-hi); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 570px) {
+  .wrap { margin: 15px auto; width: min(100% - 22px, 680px); }
+  .profile { grid-template-columns: 1fr; padding: 17px; gap: 20px; }
+  .logo { min-height: 150px; font-size: 80px; }
+  .intro { padding: 3px 4px 7px; }
+  .contact { padding: 12px 18px; }
+  .email { flex-wrap: wrap; }
+  .contact-link { font-size: 16px; gap: 12px; min-height: 78px; }
+  .round { width: 44px; height: 44px; font-size: 20px; }
+  .arrow { width: 32px; height: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+}
